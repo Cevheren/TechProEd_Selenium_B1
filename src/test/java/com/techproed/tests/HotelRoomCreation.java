@@ -34,7 +34,7 @@ public class HotelRoomCreation extends TestBase {
         WebElement idHotel=driver.findElement(By.id("IDHotel"));
         Select select=new Select(idHotel);
         select.selectByIndex(1);//selecting the first dropdown option
-        select.selectByVisibleText("Hilton Hotel");
+        //select.selectByVisibleText("Hilton Hotel");
 
         //Code
         driver.findElement(By.id("Code")).sendKeys("Royal");
@@ -83,7 +83,21 @@ public class HotelRoomCreation extends TestBase {
         //String expectedTestMessage="HotelRoom was inserted successfully";
         //Assert.assertEquals(actualTextMessage,expectedTestMessage);
 
-
+//        Then Click Ok button
+        WebElement okButton=driver.findElement(By.xpath("(//button[@type='button'])[6]"));
+        okButton.click();
+//        Then Click on Hotel Rooms
+        WebElement hotelRoomsLink=wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[@href='/admin/HotelRoomAdmin']"))));
+        Thread.sleep(3000);
+        actions.doubleClick(hotelRoomsLink).perform();
+        //hotelRoomsLink.click();
+//        Then verify the LIST OF HOTELROOMS page is displayed
+        WebElement listOfHotel=driver.findElement(By.xpath("(//*[.='List Of Hotelrooms'])[2]"));
+        Assert.assertTrue(listOfHotel.isDisplayed());
+//        Then verify you hotel is being created(You can use id, code, or name to verify)
+       String myHotelName=driver.findElement(By.xpath("//tr[10]//td[2]")).getText();
+       Assert.assertTrue(myHotelName.equals("Hilton Hotel-1"));
+//COME BACK 8:18 EST
 
 
     }
