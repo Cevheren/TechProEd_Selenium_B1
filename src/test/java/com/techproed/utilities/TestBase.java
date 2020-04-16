@@ -24,7 +24,7 @@ public abstract class TestBase {
     //We have tearDown method to close the browser after we are done with the test
     protected WebDriver driver;
     protected Actions actions;//Make sure to create this in the class level
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();

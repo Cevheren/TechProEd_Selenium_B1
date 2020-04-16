@@ -81,10 +81,25 @@ public class WebTables extends TestBase {
 
     }
 
+    public void printData(int row, int column){
+        //write your code in this method
+        //tbody//tr[8]//td[6]
+        //Writing the dynamic xpath
+        String xpath = "//tbody//tr["+row+"]//td["+column+"]";
+          //String xpath1 = "//tbody//tr[8]//td[6]";//=>Studio
+         //We are finding the elements  using that xpath
+        WebElement data=driver.findElement(By.xpath(xpath));
+        //We are and printing the data
+        System.out.println(data.getText());
+    }
 
+    @Test
+    public void printDataTest(){
+        login();
+        printData(8,6);//Studio
+         printData(3,4);//147
+         printData(5,2);//Hilton Hotel-1
 
-
-
-
+    }
 
 }
