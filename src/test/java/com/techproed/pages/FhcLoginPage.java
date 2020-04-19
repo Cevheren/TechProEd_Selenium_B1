@@ -18,7 +18,6 @@ public class FhcLoginPage {
 
     @FindBy(id="Password")
     public  WebElement password;
-
     @FindBy(id = "btnSubmit")
     public WebElement login;
 

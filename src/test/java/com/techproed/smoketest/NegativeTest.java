@@ -30,14 +30,14 @@ public class NegativeTest extends TestBase {
     @Test
     public void invalidID(){
 
-        driver.get("http://www.fhctrip.com/Account/Logon");
+        driver.get(ConfigReader.getProperty("fhc_login_url"));
         FhcLoginPage fhcLoginPage = new FhcLoginPage(driver);
         // Correct pass but inccorrect username
-        fhcLoginPage.username.sendKeys("managr");
-        fhcLoginPage.password.sendKeys("Man1ager2");
+        fhcLoginPage.username.sendKeys(ConfigReader.getProperty("invalid_username"));
+        fhcLoginPage.password.sendKeys(ConfigReader.getProperty("valid_password"));
         fhcLoginPage.login.click();
         //Assertion
-        Assert.assertTrue(fhcLoginPage.error_message.getText().contains("Try again please"));
+        Assert.assertTrue(fhcLoginPage.error_message.getText().contains(ConfigReader.getProperty("login_error_message2")));
     }
 
     @Test
