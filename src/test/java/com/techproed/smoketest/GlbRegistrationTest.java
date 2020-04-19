@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GlbRegistrationTest {
+
     GlbRegisterPage glbRegisterPage=new GlbRegisterPage();
     GlbHomePage glbHomePage=new GlbHomePage();
     //NULL POINTER EXCEPTION
