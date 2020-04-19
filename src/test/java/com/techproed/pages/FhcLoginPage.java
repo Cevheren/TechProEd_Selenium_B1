@@ -22,4 +22,7 @@ public class FhcLoginPage {
     @FindBy(id = "btnSubmit")
     public WebElement login;
 
+    @FindBy(xpath = "//div[@id='divMessageResult']")
+    public WebElement error_message;
+
 }
