@@ -12,4 +12,7 @@ public class GlbHomePage {
     }
     @FindBy(linkText = "Join Now")
     public WebElement joinNowButton;
+
+    @FindBy(id="header_search_category")
+    public WebElement glbTraderHomePageDropDown;
 }

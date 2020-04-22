@@ -22,6 +22,6 @@ public class FirstDriverTest {
         Assert.assertTrue(fhcLoginPage.error_message.getText().contains(ConfigReader.getProperty("login_error_message")));
 
 
-        //Man1ager2!
+        //Manager2!
     }
 }
