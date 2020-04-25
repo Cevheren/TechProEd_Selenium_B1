@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import sun.jvm.hotspot.debugger.Page;
 
 public class FhcLoginPage {
+    //THIS IS BASED ON TEST BASE
     WebDriver driver;
     public FhcLoginPage(WebDriver driver){
         this.driver=driver;

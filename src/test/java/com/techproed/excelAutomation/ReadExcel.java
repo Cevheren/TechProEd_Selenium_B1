@@ -10,10 +10,11 @@ import java.util.Map;
 public class ReadExcel {
     @Test
     public void readExcelFile() throws Exception {
-        String path ="/Users/techproed/Desktop/Capitals.xlsx";
+        String path ="./src/test/resources/Capitals.xlsx";
         //Opening the file
         FileInputStream fileInputStream=new FileInputStream(path);
         //Open the workbook using fileinputstream
+
         Workbook workbook=WorkbookFactory.create(fileInputStream);
         //Go to the first worksheet.(index of 0)
         Sheet sheet=workbook.getSheetAt(0);
@@ -34,11 +35,11 @@ public class ReadExcel {
         String france=workbook.getSheetAt(0).getRow(1).getCell(0).toString();
         System.out.println(france);
 
-        //how do you get the last row number?Index start at 0
-        int rowCount=sheet.getLastRowNum();//the last number of row that is being used
+        //how do you get the last row number?Index start at 0.
+        int rowCount=sheet.getLastRowNum();
         System.out.println(rowCount);
 
-        //how do you get the number of row that is used index start at 1
+        //how do you get the number of row that is used index start at 1.Gives only used # of cell
         int numberOfPhysicalRows=sheet.getPhysicalNumberOfRows();
         System.out.println(numberOfPhysicalRows);
 
