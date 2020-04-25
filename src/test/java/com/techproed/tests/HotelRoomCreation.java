@@ -35,7 +35,7 @@ public class HotelRoomCreation extends TestBase {
         Select select=new Select(idHotel);
         select.selectByIndex(1);//selecting the first dropdown option
         //select.selectByVisibleText("Hilton Hotel");
-         driver.findElement(By.linkText("Rooms"));
+        // driver.findElement(By.linkText("Rooms"));
         //Code
         driver.findElement(By.id("Code")).sendKeys("Royal");
 
