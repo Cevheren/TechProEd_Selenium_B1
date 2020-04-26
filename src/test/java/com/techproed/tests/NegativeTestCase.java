@@ -1,37 +1,38 @@
-package com.techproed.smoketest;
+package com.techproed.tests;
 
 import com.techproed.pages.FhcLoginPage;
 import com.techproed.utilities.ConfigReader;
-import com.techproed.utilities.TestBase;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.techproed.utilities.Driver;
+import com.techproed.utilities.TestBaseFinal;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NegativeTest extends TestBase {
+public class NegativeTestCase extends TestBaseFinal {
 
     @Test
     public void invalidPass() throws InterruptedException {
-
-        driver.get(ConfigReader.getProperty("fhc_login_url"));
-        FhcLoginPage fhcLoginPage = new FhcLoginPage(driver);
+        extentTest=extentReports.createTest("TEST NAME","NEGATIVE TEST");
+        extentTest.info("Opening the URL");
+        Driver.getDriver().get(ConfigReader.getProperty("fhc_login_url"));
+        extentTest.info("creating page object");
+        FhcLoginPage fhcLoginPage = new FhcLoginPage(Driver.getDriver());
         //correct username but incorrect pass
         fhcLoginPage.username.sendKeys(ConfigReader.getProperty("valid_username"));
         fhcLoginPage.password.sendKeys(ConfigReader.getProperty("invalid_password"));
+        extentTest.info("clicking");
         fhcLoginPage.login.click();
         Thread.sleep(3000);
-        Assert.assertTrue(fhcLoginPage.error_message.getText().contains(ConfigReader.getProperty("login_error_message")));
+        extentTest.info("verifying");
+        Assert.assertFalse(fhcLoginPage.error_message.getText().contains(ConfigReader.getProperty("login_error_message")));
+        extentTest.pass("PASSED");
 
     }
 
     @Test(groups = "regression1")
     public void invalidID(){
 
-        driver.get(ConfigReader.getProperty("fhc_login_url"));
-        FhcLoginPage fhcLoginPage = new FhcLoginPage(driver);
+        Driver.getDriver().get(ConfigReader.getProperty("fhc_login_url"));
+        FhcLoginPage fhcLoginPage = new FhcLoginPage(Driver.getDriver());
         // Correct pass but inccorrect username
         fhcLoginPage.username.sendKeys(ConfigReader.getProperty("invalid_username"));
         fhcLoginPage.password.sendKeys(ConfigReader.getProperty("valid_password"));
@@ -42,8 +43,8 @@ public class NegativeTest extends TestBase {
 
     @Test(groups = "regression1")
     public void invalidIDAndPass(){
-        driver.get("http://www.fhctrip.com/Account/Logon");
-        FhcLoginPage fhcLoginPage = new FhcLoginPage(driver);
+        Driver.getDriver().get("http://www.fhctrip.com/Account/Logon");
+        FhcLoginPage fhcLoginPage = new FhcLoginPage(Driver.getDriver());
         //Both incorrect username password
         fhcLoginPage.username.sendKeys("minagr2");
         fhcLoginPage.password.sendKeys("Man2ager2");
