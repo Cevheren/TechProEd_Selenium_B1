@@ -28,7 +28,7 @@ public class ExcelAutomation {
         testData=excelUtil.getDataList();
 
     }
-    //firstname	lastname	position	office	extension	startdate	salary
+
     @Test
     public void ExcelDataAutomation() throws InterruptedException {
 
@@ -40,7 +40,7 @@ public class ExcelAutomation {
                 dtExcel.position.sendKeys(appData.get("position"));
                 dtExcel.office.sendKeys(appData.get("office"));
                 dtExcel.extension.sendKeys(appData.get("extension"));
-//            dtExcel.startDate.sendKeys(appData.get("startdate"));
+  //            dtExcel.startDate.sendKeys(appData.get("startdate"));
                 dtExcel.startDate.click();
                 dtExcel.day.click();
                 dtExcel.salary.sendKeys(appData.get("salary"));
