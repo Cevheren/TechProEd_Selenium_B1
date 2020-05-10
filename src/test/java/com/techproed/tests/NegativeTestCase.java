@@ -8,8 +8,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NegativeTestCase extends TestBaseFinal {
+//parameter
+//
 
-    @Test
+    @Test(enabled = false)
     public void invalidPass() throws InterruptedException {
         extentTest=extentReports.createTest("TEST NAME","NEGATIVE TEST");
         extentTest.info("Opening the URL");
@@ -26,9 +28,13 @@ public class NegativeTestCase extends TestBaseFinal {
         Assert.assertFalse(fhcLoginPage.error_message.getText().contains(ConfigReader.getProperty("login_error_message")));
         extentTest.pass("PASSED");
 
+
     }
 
-    @Test(groups = "regression1")
+    //we can use multiple parameter on single test
+    //For example tehre are two parameters on this test case
+    //This test case will runs two times
+    @Test(groups = "regression1",invocationCount = 2)
     public void invalidID(){
 
         Driver.getDriver().get(ConfigReader.getProperty("fhc_login_url"));

@@ -15,6 +15,4 @@ public class PositiveTest extends TestBase {
         fhcLoginPage.password.sendKeys("Man1ager2!");
         fhcLoginPage.login.click();
     }
-
-
 }

@@ -2,3 +2,4 @@
 .DS_Store
 mytestNGframework.iml
 target/
+test-output/
