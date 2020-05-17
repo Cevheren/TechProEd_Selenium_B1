@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="FHC" parallel="tests" thread-count="2" >
+    <test name="Login tests using firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <packages>
+            <package name="com.techproed.smoketest"></package>
+        </packages>
+    </test>
+</suite>

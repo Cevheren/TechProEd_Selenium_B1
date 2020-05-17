@@ -7,26 +7,23 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
+public class DriverCross {
 
-public class Driver {
-    //What?=>It is just to create, initialize the driver instance.(Singleton driver)
-    //Why?=>We don't want to create and initialize the driver when we don't need
-    //We will create and initialize the driver when it is null
-    //We can use Driver class with different browser(chrome,firefox,headless)
-    private Driver(){
-        //we don't want to create another abject. Singleton pattern
+    private DriverCross() {
     }
 
-    //create a driver instance
     private static WebDriver driver;
-    //to initialize the driver we create a static method
-    public static WebDriver getDriver() {
-        //create the driver if and only if it is null
+
+    //This one I am calling from the test base cross browser
+    public static WebDriver getDriver(String browser) {
+
         if (driver == null) {
-            switch (ConfigReader.getProperty("browser")) {
+            //if xml browser is not null, it will use it in the xml file
+            //if xml browser is null, the browser will come from Config Properties File
+            browser = browser == null ? ConfigReader.getProperty("browser") : browser;
+
+            switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
@@ -49,19 +46,17 @@ public class Driver {
                     break;
             }
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+
         return driver;
     }
-
-    public static void closeDriver(){
-        if (driver!=null){//if the driver is pointing chrome
-            driver.quit();//quit the driver
-            driver=null;//set it back to null to make sure driver is null
-            // so I can initialize it again
-            //This is important especially you do cross browser testing(testing with
-            // multiple browser like chrome, firefox, ie etc.)
-        }
+    public static WebDriver getDriver() {
+        return getDriver(null);
     }
 
+    public static void closeDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 }
